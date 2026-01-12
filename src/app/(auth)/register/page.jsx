@@ -11,6 +11,7 @@ import {
 import { Upload, User, Mail, Lock, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import axios from "axios";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -47,7 +48,15 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("User Registration Data:", formData);
-    signIn();
+
+    const { name, email, password, photo } = formData;
+    const user = {
+      name,
+      email,
+      password,
+      photo,
+    };
+  
   };
 
   return (
