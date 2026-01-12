@@ -10,13 +10,13 @@ import {
 } from "@heroui/react";
 import { Upload, User, Mail, Lock, BookOpen } from "lucide-react";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import axios from "axios";
 import useAxios from "@/hooks/useAxios";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const RegistrationForm = () => {
   const axiosInstance = useAxios();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,6 +56,7 @@ const RegistrationForm = () => {
       .post("/users", formData)
       .then((response) => {
         toast.success("User registered successfully");
+        router.push("/login");
       })
       .catch((error) => {
         toast.error(error.response.data.message);
