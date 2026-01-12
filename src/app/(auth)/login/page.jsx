@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import { Input, Button, Card, CardBody, CardHeader } from "@heroui/react";
 import { Mail, Lock, BookOpen } from "lucide-react";
 import Link from "next/link";
+import useAxios from "@/hooks/useAxios";
+import { toast } from "sonner";
 
 const LoginPage = () => {
+  const axiosInstance = useAxios();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,6 +25,16 @@ const LoginPage = () => {
     e.preventDefault();
     console.log("User Login Data:", formData);
     // Here you would typically send the data to your backend
+    //  User login system
+    axiosInstance
+      .post("/users/login", formData)
+      .then((response) => {
+        toast.success(`${response.data.message}`);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        toast.error(`${error.response.data.message}`);
+      });
   };
 
   return (
@@ -97,7 +110,6 @@ const LoginPage = () => {
                 type="submit"
                 className="w-full bg-bookNavy text-paper font-bold shadow-lg hover:shadow-xl hover:bg-bookNavy/90 transition-all transform active:scale-95 py-6 text-lg"
                 radius="full"
-                
               >
                 Log In
               </Button>

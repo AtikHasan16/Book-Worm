@@ -13,6 +13,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import axios from "axios";
 import useAxios from "@/hooks/useAxios";
+import { toast } from "sonner";
 
 const RegisterPage = () => {
   const axiosInstance = useAxios();
@@ -54,10 +55,10 @@ const RegisterPage = () => {
     axiosInstance
       .post("/users", formData)
       .then((response) => {
-        console.log(response.data);
+        toast.success("User registered successfully");
       })
       .catch((error) => {
-        console.log(error.response.data);
+        toast.error(error.response.data.message);
       });
   };
 
