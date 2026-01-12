@@ -28,7 +28,7 @@ const DashNavbar = () => {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      maxWidth="xl"
+      maxWidth="2xl"
       className="font-dm-sans"
     >
       <NavbarContent>

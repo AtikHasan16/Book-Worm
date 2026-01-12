@@ -1,11 +1,11 @@
 import React from "react";
+import Container from "@/components/shared/Container";
 
 const books = () => {
   return (
-    <div>
+    <Container>
       <h1>Books</h1>
-    </div>
+    </Container>
   );
 };
-
 export default books;
