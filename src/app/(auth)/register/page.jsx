@@ -10,6 +10,7 @@ import {
 } from "@heroui/react";
 import { Upload, User, Mail, Lock, BookOpen } from "lucide-react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -46,7 +47,7 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("User Registration Data:", formData);
-    // Here you would typically send the data to your backend
+    signIn();
   };
 
   return (

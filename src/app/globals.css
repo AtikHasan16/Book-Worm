@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 @plugin "./hero.js";
 @source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 
@@ -38,6 +39,6 @@ h6 {
 
 @layer components {
   .btn-primary {
-    @apply bg-bookNavy text-paper font-medium font-dm-sans px-6 py-2 rounded-full hover:bg-bookNavy/90 active:scale-95 transition-all outline-none border-none cursor-pointer;
+    @apply bg-bookNavy text-paper;
   }
 }

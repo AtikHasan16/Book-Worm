@@ -97,6 +97,7 @@ const LoginPage = () => {
                 type="submit"
                 className="w-full bg-bookNavy text-paper font-bold shadow-lg hover:shadow-xl hover:bg-bookNavy/90 transition-all transform active:scale-95 py-6 text-lg"
                 radius="full"
+                
               >
                 Log In
               </Button>

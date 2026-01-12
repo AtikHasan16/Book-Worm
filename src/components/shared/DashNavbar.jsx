@@ -63,7 +63,7 @@ const DashNavbar = () => {
           <Button
             as={Link}
             href="/login"
-            className="bg-bookNavy text-paper hidden sm:flex"
+            className="bg-bookNavy text-paper hidden sm:flex btn-primary"
           >
             Login
           </Button>
@@ -71,9 +71,8 @@ const DashNavbar = () => {
         <NavbarItem>
           <Button
             as={Link}
-            className="bg-bookNavy text-paper"
+            className="bg-bookNavy text-paper btn-primary"
             href="/register"
-            variant="flat"
           >
             Sign Up
           </Button>
