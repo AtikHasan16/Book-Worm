@@ -19,9 +19,9 @@ const SideNav = () => {
     {
       name: "Moderate Reviews",
       icon: MessageSquare,
-      href: "/dashboard/reviews",
+      href: "/dashboard/moderate",
     },
-    { name: "Manage Tutorials", icon: Video, href: "/dashboard/tutorials" },
+    { name: "Manage Tutorials", icon: Video, href: "/dashboard/manage-tutorials" },
   ];
 
   return (

@@ -1,7 +1,4 @@
-"use client";
 import React from "react";
-import { BookOpen, Star, MoreHorizontal, Clock, Book } from "lucide-react";
-import { Button, Chip, Card, CardBody, User, Progress } from "@heroui/react";
 
 const Dashboard = () => {
   return (

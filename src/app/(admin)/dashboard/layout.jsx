@@ -3,7 +3,7 @@ import SideNav from "@/components/dashboard/SideNav";
 
 export default function DashboardLayout({ children }) {
   return (
-    <div className="flex min-h-screen bg-[#F3F3F7]">
+    <div className="flex min-h-screen bg-paper">
       {/* Sidebar - Fixed width */}
       <SideNav />
 
