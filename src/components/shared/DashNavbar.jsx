@@ -60,7 +60,11 @@ const DashNavbar = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} href="/login" className="bg-bookNavy text-paper">
+          <Button
+            as={Link}
+            href="/login"
+            className="bg-bookNavy text-paper hidden sm:flex"
+          >
             Login
           </Button>
         </NavbarItem>
