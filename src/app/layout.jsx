@@ -1,9 +1,7 @@
 import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 
-import DashFooter from "@/components/shared/DashFooter";
 import { Providers } from "./providers";
-import DashNavbar from "@/components/shared/DashNavbar";
 
 const fraunses = Fraunces({
   variable: "--font-fraunses",
@@ -24,11 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`antialiased ${fraunses.variable} ${dmsans.variable}`}>
-        <Providers>
-          <DashNavbar />
-          <main className="min-h-screen">{children}</main>
-          <DashFooter />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
