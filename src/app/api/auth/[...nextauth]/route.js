@@ -1,11 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const userList = [
-  { email: "admin@mail.com", password: "admin" },
-  { email: "user@mail.com", password: "user" },
-  { email: "test@mail.com", password: "test" },
-];
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -25,9 +20,10 @@ const handler = NextAuth({
         // my own login logic
         const { email, password } = credentials;
 
-        const user = userList.find(
-          (u) => u.email === email && u.password === password
-        );
+        const user = await userCollection.findOne({
+          email: email,
+          password: password,
+        });
         if (!user) {
           return null;
         }
