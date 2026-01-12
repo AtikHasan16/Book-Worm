@@ -12,8 +12,10 @@ import { Upload, User, Mail, Lock, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import axios from "axios";
+import useAxios from "@/hooks/useAxios";
 
 const RegisterPage = () => {
+  const axiosInstance = useAxios();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -49,14 +51,14 @@ const RegisterPage = () => {
     e.preventDefault();
     console.log("User Registration Data:", formData);
 
-    const { name, email, password, photo } = formData;
-    const user = {
-      name,
-      email,
-      password,
-      photo,
-    };
-  
+    axiosInstance
+      .post("/users", formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
   };
 
   return (
@@ -132,7 +134,7 @@ const RegisterPage = () => {
                     label: "text-bookNavy/80 font-medium",
                     input: "text-bookNavy placeholder:text-bookNavy/30",
                     inputWrapper:
-                      "bg-white hover:bg-white focus-within:bg-white border-1 border-bookNavy/10 shadow-sm",
+                      "bg-white hover:bg-white  border-1 border-bookNavy/10 shadow-sm",
                   }}
                   isRequired
                 />
@@ -149,7 +151,7 @@ const RegisterPage = () => {
                     label: "text-bookNavy/80 font-medium",
                     input: "text-bookNavy placeholder:text-bookNavy/30",
                     inputWrapper:
-                      "bg-white hover:bg-white focus-within:bg-white border-1 border-bookNavy/10 shadow-sm",
+                      "bg-white hover:bg-white  border-1 border-bookNavy/10 shadow-sm",
                   }}
                   isRequired
                 />
@@ -166,7 +168,7 @@ const RegisterPage = () => {
                     label: "text-bookNavy/80 font-medium",
                     input: "text-bookNavy placeholder:text-bookNavy/30",
                     inputWrapper:
-                      "bg-white hover:bg-white focus-within:bg-white border-1 border-bookNavy/10 shadow-sm",
+                      "bg-white hover:bg-white  border-1 border-bookNavy/10 shadow-sm",
                   }}
                   isRequired
                 />
