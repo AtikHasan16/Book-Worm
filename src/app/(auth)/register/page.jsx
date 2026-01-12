@@ -1,6 +1,7 @@
 import React from "react";
 
 import { BookOpen } from "lucide-react";
+import RegistrationForm from "@/components/forms/RegistrationForm";
 
 const RegisterPage = () => {
   return (
@@ -20,6 +21,9 @@ const RegisterPage = () => {
             favorites, and share your thoughts with fellow bibliophiles.
           </p>
         </div>
+
+        {/* Right Side - Registration Form */}
+        <RegistrationForm />
       </div>
     </div>
   );
