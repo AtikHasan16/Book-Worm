@@ -18,6 +18,10 @@ const ProfileCard = () => {
 
   const { name, email, role, image } = session?.user || {};
 
+  const handleEditProfile = () => {
+    
+  };
+
   return (
     <>
       {session?.user ? (
@@ -25,9 +29,9 @@ const ProfileCard = () => {
           <CardHeader className="flex gap-5 p-6">
             <Avatar
               isBordered
-              color={role === "admin" ? "secondary" : "primary"}
+              color={role === "admin" ? "danger" : "primary"}
               src={image}
-              className="w-24 h-24 text-large"
+              className="w-24 h-24 text-large ring-2"
             />
             <div className="flex flex-col gap-2 flex-1 justify-center">
               <div className="flex items-center gap-3">
@@ -35,7 +39,7 @@ const ProfileCard = () => {
                   {name}
                 </h1>
                 <Chip
-                  color={role === "admin" ? "secondary" : "success"}
+                  color={role === "admin" ? "danger" : "success"}
                   variant="flat"
                   size="sm"
                   className="uppercase font-bold"
@@ -47,7 +51,12 @@ const ProfileCard = () => {
                 @{name?.toLowerCase().replace(/\s+/g, "")}
               </p>
             </div>
-            <Button color="primary" variant="flat" className="font-bold">
+            <Button
+              onPress={() => handleEditProfile()}
+              color="primary"
+              variant="flat"
+              className="font-bold"
+            >
               Edit Profile
             </Button>
           </CardHeader>

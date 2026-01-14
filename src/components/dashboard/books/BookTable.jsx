@@ -80,7 +80,7 @@ const BookTable = ({ books, onEdit, onDelete }) => {
                       <Chip
                         size="md"
                         variant="flat"
-                        className="bg-shelfWood/10 text-shelfWood font-bold uppercase tracking-wider"
+                        className="bg-shelfWood/10 text-shelfWood font-bold tracking-wider"
                       >
                         {book.genre}
                       </Chip>

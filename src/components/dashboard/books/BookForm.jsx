@@ -18,8 +18,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import Image from "next/image";
 
-
-const BookForm = ({ isOpen, onClose, onSubmit, initialData }) => {
+const BookForm = ({ isOpen, onClose, onSubmit, initialData, genres }) => {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -111,6 +110,7 @@ const BookForm = ({ isOpen, onClose, onSubmit, initialData }) => {
         ...formData,
         coverImage: coverImageURL,
       };
+      console.log(finalData);
 
       await onSubmit(finalData);
       onClose();
@@ -220,7 +220,7 @@ const BookForm = ({ isOpen, onClose, onSubmit, initialData }) => {
                 <Select
                   label="Genre"
                   placeholder="Select a genre"
-                  selectedKeys={formData.genre ? [formData.genre] : []}
+                  value={formData.genre}
                   onChange={handleSelectionChange}
                   variant="bordered"
                   classNames={{
@@ -229,9 +229,9 @@ const BookForm = ({ isOpen, onClose, onSubmit, initialData }) => {
                   }}
                   isRequired
                 >
-                  {GENRES.map((genre) => (
-                    <SelectItem key={genre} value={genre}>
-                      {genre}
+                  {genres.map((genre) => (
+                    <SelectItem key={genre.name} value={genre._id}>
+                      {genre.name}
                     </SelectItem>
                   ))}
                 </Select>

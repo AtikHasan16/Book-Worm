@@ -14,7 +14,7 @@ import BookForm from "./BookForm";
 import useAxios from "@/hooks/useAxios";
 import { toast } from "sonner";
 
-const BookManager = ({ initialBooks = [] }) => {
+const BookManager = ({ initialBooks = [], initialGenres = [] }) => {
   const [books, setBooks] = useState(initialBooks);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
@@ -110,6 +110,7 @@ const BookManager = ({ initialBooks = [] }) => {
         books={books}
         onEdit={handleEditBook}
         onDelete={handleDeleteClick}
+        genres={initialGenres}
       />
 
       {/* Add/Edit Modal Form */}
