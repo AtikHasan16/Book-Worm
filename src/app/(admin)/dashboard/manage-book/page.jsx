@@ -1,11 +1,29 @@
-import React from 'react';
+import React from "react";
+import BookManager from "@/components/dashboard/books/BookManager";
 
-const ManageBook = () => {
-    return (
-        <div>
-            Manage Book
-        </div>
-    );
+const getBooks = async () => {
+  try {
+    const res = await fetch("http://localhost:2000/api/books", {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      throw new Error("Failed to fetch books");
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Error loading books:", error);
+    return [];
+  }
 };
 
-export default ManageBook;
+const ManageBookPage = async () => {
+  const books = await getBooks();
+
+  return (
+    <div className="p-6">
+      <BookManager initialBooks={books} />
+    </div>
+  );
+};
+
+export default ManageBookPage;

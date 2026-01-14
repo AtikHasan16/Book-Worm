@@ -78,7 +78,7 @@ const DashNavbar = () => {
               <Avatar
                 isBordered
                 as="button"
-                className="transition-transform cursor-pointer"
+                className="transition-transform cursor-pointer hover:scale-110 ring-2 ring-bookNavy"
                 color="secondary"
                 name={email}
                 size="md"
@@ -104,7 +104,7 @@ const DashNavbar = () => {
               )}
               <DropdownItem
                 key="logout"
-                color="danger"
+                color="warning"
                 onPress={() => signOut({ callbackUrl: "/login" })}
               >
                 Log Out
