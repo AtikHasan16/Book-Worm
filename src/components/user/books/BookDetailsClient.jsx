@@ -193,12 +193,17 @@ const BookDetailsClient = ({ book, initialReviews = [] }) => {
               No approved reviews yet. Be the first!
             </p>
           ) : (
-            reviews.map((review, idx) => (
-              <Card key={idx} className="bg-white border-none shadow-sm">
+            reviews.map((review) => (
+              <Card key={review._id} className="bg-white border-none shadow-sm">
                 <CardBody className="flex flex-row gap-4">
-                  <Avatar src={review.userImage || ""} name={review.userName} />
+                  <Avatar
+                    src={review.userInfo.userImage || ""}
+                    name={review.userInfo.userName}
+                  />
                   <div>
-                    <p className="font-bold text-bookNavy">{review.userName}</p>
+                    <p className="font-bold text-bookNavy">
+                      {review.userInfo.userName}
+                    </p>
                     <div className="flex items-center gap-1 my-1">
                       {[...Array(5)].map((_, i) => (
                         <Star

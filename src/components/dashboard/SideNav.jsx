@@ -22,7 +22,7 @@ const SideNav = () => {
     {
       name: "Moderate Reviews",
       icon: MessageSquare,
-      href: "/dashboard/moderate",
+      href: "/dashboard/manage-reviews",
     },
     {
       name: "Manage Tutorials",
