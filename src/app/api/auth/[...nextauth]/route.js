@@ -1,35 +1,59 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import axios from "axios";
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: "Email",
-
-      //  Form inputs
+      name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "Email" },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "Password",
-        },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        // my own login logic
-        const { email, password } = credentials;
+      async authorize(credentials) {
+        try {
+          const res = await axios.post(
+            "http://localhost:2000/api/users/login",
+            {
+              email: credentials.email,
+              password: credentials.password,
+            }
+          );
 
-        const user = await userCollection.findOne({
-          email: email,
-          password: password,
-        });
-        if (!user) {
+          const user = res.data.existingUser;
+
+          if (user) {
+            return user;
+          }
           return null;
+        } catch (error) {
+          console.error("Login authorization error:", error.response?.data);
+          throw new Error(error.response?.data?.message || "Login failed");
         }
-        return user;
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user._id;
+        token.role = user.role;
+        token.picture = user.photo;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+        session.user.image = token.picture;
+      }
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/login",
+  },
 });
+
 export { handler as GET, handler as POST };

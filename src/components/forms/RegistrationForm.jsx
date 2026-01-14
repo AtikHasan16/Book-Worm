@@ -13,6 +13,7 @@ import Link from "next/link";
 import useAxios from "@/hooks/useAxios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const RegistrationForm = () => {
   const axiosInstance = useAxios();
@@ -24,6 +25,7 @@ const RegistrationForm = () => {
     photo: null,
   });
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -48,19 +50,44 @@ const RegistrationForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("User Registration Data:", formData);
+  // Your ImgBB API Key
+  const image_hosting_key = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
+  const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-    axiosInstance
-      .post("/users", formData)
-      .then((response) => {
-        toast.success("User registered successfully");
-        router.push("/login");
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // 1. Upload Image to ImgBB
+      const imageFile = { image: formData.photo };
+      const res = await axios.post(image_hosting_api, imageFile, {
+        headers: { "content-type": "multipart/form-data" },
       });
+
+      const photoURL = res.data.data.display_url; // Get the URL
+      // 2. Send User Data + Photo URL to Backend
+      const userPayload = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        photo: photoURL, // Send the String URL, not the File
+        role: "user", // Default role
+      };
+
+      await axiosInstance.post("/users", userPayload);
+
+      toast.success("Registration Successful! Please Login.");
+      router.push("/login");
+    } catch (error) {
+      console.error(error?.response?.data);
+      toast.error(error?.response?.data?.message || "Registration Failed");
+      if (error?.response?.data?.message === "User already exists") {
+        router.push("/login");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
