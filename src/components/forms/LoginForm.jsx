@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import useAxios from "@/hooks/useAxios";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
+import LoadingClient from "../shared/LoadingClient";
 const LoginForm = () => {
   const axiosInstance = useAxios();
   const router = useRouter();
@@ -45,9 +46,7 @@ const LoginForm = () => {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center h-screen">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bookNavy"></div>
-        </div>
+        <LoadingClient />
       ) : (
         <Card className="w-full max-w-md mx-auto shadow-xl border-none bg-white/50 backdrop-blur-sm">
           <CardHeader className="flex flex-col gap-1 pb-0 pt-8 px-8 items-center text-center">
