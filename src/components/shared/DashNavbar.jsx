@@ -28,7 +28,10 @@ const DashNavbar = () => {
   const { email, role, image } = session?.user || {};
 
   const menuItems = [
-    { name: "Dashboard", href: "/dashboard" },
+    {
+      name: role === "admin" ? "Dashboard" : "Home",
+      href: role === "admin" ? "/dashboard" : "/",
+    },
     { name: "Browse Books", href: "/books" },
     { name: "My Library", href: "/my-library" },
     { name: "Tutorials", href: "/tutorials" },
@@ -82,8 +85,12 @@ const DashNavbar = () => {
                 src={image}
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat" >
-              <DropdownItem key="profile" className="h-14 gap-2" textValue="Signed in as">
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem
+                key="profile"
+                className="h-14 gap-2"
+                textValue="Signed in as"
+              >
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">{email}</p>
               </DropdownItem>

@@ -3,13 +3,11 @@ import React, { useState } from "react";
 import { Input, Button, Card, CardBody, CardHeader } from "@heroui/react";
 import { Mail, Lock, BookOpen } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import useAxios from "@/hooks/useAxios";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import LoadingClient from "../shared/LoadingClient";
+import { useRouter } from "next/navigation";
 const LoginForm = () => {
-  const axiosInstance = useAxios();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -40,7 +38,8 @@ const LoginForm = () => {
       setLoading(false);
     } else {
       toast.success("Login Successful!");
-      router.push("/");
+      setLoading(false);
+      router.push("/dashboard");
     }
   };
   return (
