@@ -1,7 +1,29 @@
 import React from "react";
+import TutorialManager from "@/components/dashboard/tutorials/TutorialManager";
 
-const ManageTutorials = () => {
-  return <div>Manage Tutorials</div>;
+const getTutorials = async () => {
+  try {
+    const res = await fetch("http://localhost:2000/api/tutorials", {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      throw new Error("Failed to fetch tutorials");
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Error loading tutorials:", error);
+    return [];
+  }
 };
 
-export default ManageTutorials;
+const ManageTutorialPage = async () => {
+  const tutorials = await getTutorials();
+
+  return (
+    <div className="p-6">
+      <TutorialManager initialTutorials={tutorials} />
+    </div>
+  );
+};
+
+export default ManageTutorialPage;
