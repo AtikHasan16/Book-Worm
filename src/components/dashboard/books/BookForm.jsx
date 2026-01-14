@@ -18,7 +18,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import Image from "next/image";
 
-const BookForm = ({ isOpen, onClose, onSubmit, initialData, genres }) => {
+const BookForm = ({ isOpen, onClose, onSubmit, initialData, genres = [] }) => {
   const [formData, setFormData] = useState({
     title: "",
     author: "",

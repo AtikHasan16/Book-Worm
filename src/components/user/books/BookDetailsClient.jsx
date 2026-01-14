@@ -53,11 +53,12 @@ const BookDetailsClient = ({ book, initialReviews = [] }) => {
 
     const newShelf = e.target.value;
     setCurrentShelf(new Set([newShelf]));
+    // console.log(session.user);
 
     try {
       await axiosInstance.post("/shelves", {
-        userId: session.user.email, // Using email as ID for simplicity in this no-id-session setup
-        bookId: book._id,
+        userId: session.user.email,
+        bookInfo: book,
         shelf: newShelf,
       });
       toast.success(`Added to ${newShelf}`);
@@ -82,10 +83,12 @@ const BookDetailsClient = ({ book, initialReviews = [] }) => {
     setSubmittingReview(true);
     try {
       await axiosInstance.post("/reviews", {
-        bookId: book._id,
-        userId: session.user.email,
-        userName: session.user.name,
-        userImage: session.user.image,
+        bookInfo: book,
+        userInfo: {
+          userId: session.user.email,
+          userName: session.user.name,
+          userImage: session.user.image,
+        },
         rating,
         comment,
       });

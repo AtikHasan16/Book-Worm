@@ -15,6 +15,8 @@ import useAxios from "@/hooks/useAxios";
 import { toast } from "sonner";
 
 const BookManager = ({ initialBooks = [], initialGenres = [] }) => {
+  // console.log(initialGenres);
+
   const [books, setBooks] = useState(initialBooks);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
@@ -119,6 +121,7 @@ const BookManager = ({ initialBooks = [], initialGenres = [] }) => {
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleFormSubmit}
         initialData={editingBook}
+        genres={initialGenres}
       />
 
       {/* Delete Confirmation Modal */}
