@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import { Button, NavbarItem } from "@heroui/react";
+import { Button } from "@heroui/react";
 
 const SideNav = () => {
   const navItems = [
