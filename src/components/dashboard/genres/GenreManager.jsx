@@ -1,7 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Input, Card, CardBody, Chip, Tooltip } from "@heroui/react";
-import { Plus, Edit2, Check, X, Trash2, Edit } from "lucide-react";
+import {
+  Button,
+  Input,
+  Card,
+  CardBody,
+  Chip,
+  Tooltip,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@heroui/react";
+import { Plus, Edit2, Check, X, Trash2, TriangleAlert } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import useAxios from "@/hooks/useAxios";
@@ -12,6 +24,10 @@ const GenreManager = ({ initialGenres = [] }) => {
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editValue, setEditValue] = useState("");
+
+  // Delete Modal State
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [genreToDelete, setGenreToDelete] = useState(null);
 
   const axiosInstance = useAxios();
 
@@ -69,13 +85,19 @@ const GenreManager = ({ initialGenres = [] }) => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Delete this genre?")) return;
+  const handleDelete = (id) => {
+    setGenreToDelete(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!genreToDelete) return;
 
     try {
-      await axiosInstance.delete(`/genres/${id}`);
-      setGenres((prev) => prev.filter((g) => g._id !== id));
+      await axiosInstance.delete(`/genres/${genreToDelete}`);
+      setGenres((prev) => prev.filter((g) => g._id !== genreToDelete));
       toast.success("Genre deleted");
+      setIsDeleteModalOpen(false);
     } catch (error) {
       console.error(error);
       toast.error("Failed to delete genre");
@@ -182,6 +204,7 @@ const GenreManager = ({ initialGenres = [] }) => {
                             isIconOnly
                             size="sm"
                             color="success"
+                            variant="light"
                             onPress={() => startEdit(genre)}
                           >
                             <Edit2 size={16} className="text-bookNavy" />
@@ -192,6 +215,7 @@ const GenreManager = ({ initialGenres = [] }) => {
                             isIconOnly
                             size="sm"
                             color="danger"
+                            variant="light"
                             onPress={() => handleDelete(genre._id)}
                           >
                             <Trash2 size={16} />
@@ -212,6 +236,53 @@ const GenreManager = ({ initialGenres = [] }) => {
           </div>
         )}
       </div>
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onOpenChange={setIsDeleteModalOpen}
+        backdrop="blur"
+        placement="center"
+        className="bg-paper"
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1 items-center text-center pt-8">
+                <div className="w-16 h-16 rounded-full bg-danger/10 flex items-center justify-center mb-2 text-danger">
+                  <TriangleAlert size={32} />
+                </div>
+                <span className="text-2xl font-fraunses font-bold text-bookNavy">
+                  Delete Genre?
+                </span>
+              </ModalHeader>
+              <ModalBody className="text-center px-8">
+                <p className="text-bookNavy/60 font-dm-sans">
+                  Are you sure you want to delete this genre? This action cannot
+                  be undone.
+                </p>
+              </ModalBody>
+              <ModalFooter className="justify-center pb-8 pt-4">
+                <Button
+                  color="default"
+                  variant="flat"
+                  onPress={onClose}
+                  className="font-bold"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  color="danger"
+                  onPress={confirmDelete}
+                  className="font-bold shadow-lg shadow-danger/20"
+                >
+                  Yes, Delete It
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 };

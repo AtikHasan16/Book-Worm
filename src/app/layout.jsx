@@ -16,6 +16,9 @@ const dmsans = DM_Sans({
 export const metadata = {
   title: "BookWorm",
   description: "Your personal book tracking application",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
