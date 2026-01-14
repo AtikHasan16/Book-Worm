@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   LayoutDashboard,
@@ -9,6 +10,8 @@ import {
   LogOut,
 } from "lucide-react";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
+import { Button, NavbarItem } from "@heroui/react";
 
 const SideNav = () => {
   const navItems = [
@@ -21,7 +24,11 @@ const SideNav = () => {
       icon: MessageSquare,
       href: "/dashboard/moderate",
     },
-    { name: "Manage Tutorials", icon: Video, href: "/dashboard/manage-tutorials" },
+    {
+      name: "Manage Tutorials",
+      icon: Video,
+      href: "/dashboard/manage-tutorials",
+    },
   ];
 
   return (
@@ -57,13 +64,13 @@ const SideNav = () => {
           </div>
 
           <div className="mt-auto pt-6 border-t">
-            <Link
-              href="#" // TODO: Add logout logic
-              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-rose-400 transition-colors hover:bg-shelfWood/10"
+            <Button
+              onPress={() => signOut({ callbackUrl: "/login" })}
+              className="flex items-center gap-3 text-rose-300 hover:text-rose-300 font-bold hover:bg-gray-800 bg-transparent border border-gray-800"
             >
               <LogOut size={20} />
               Logout
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
