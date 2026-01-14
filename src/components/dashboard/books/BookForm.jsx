@@ -18,19 +18,6 @@ import axios from "axios";
 import { toast } from "sonner";
 import Image from "next/image";
 
-const GENRES = [
-  "Fiction",
-  "Non-Fiction",
-  "Sci-Fi",
-  "Fantasy",
-  "Mystery",
-  "Thriller",
-  "Romance",
-  "History",
-  "Biography",
-  "Self-Help",
-  "Religious",
-];
 
 const BookForm = ({ isOpen, onClose, onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
