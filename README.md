@@ -1,6 +1,6 @@
 <div align="center">
 
-![BookWorm Banner](website banner.png)
+![BookWorm Banner](image.png)
 
   <!-- Replace the URL above with your actual banner image URL -->
 
@@ -59,9 +59,9 @@ _(Note: Live link is a placeholder)_
 
 - **Browse Books:** Discover books with real-time search (Title/Author) and Genre filtering.
 - **Personal Library:** Organize books into shelves:
-  - **Want to Read**
-  - **Currently Reading** (Track progress by page number)
-  - **Read**
+  - **Want to Read** 
+  - **Currently Reading**  (Track progress by page number)
+  - **Read** 
 - **Rate & Review:** Share thoughts with the community (Reviews require admin approval).
 - **Authentication:** Secure login/registration with role-based access control (Admin vs. User).
 
@@ -145,7 +145,7 @@ npm run dev
 
 Visit `http://localhost:3000` to browse the app!
 
-## API Endpoints
+##  API Endpoints
 
 A quick look at the core API structure:
 
