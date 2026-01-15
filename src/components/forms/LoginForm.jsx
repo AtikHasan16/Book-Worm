@@ -42,6 +42,20 @@ const LoginForm = () => {
       router.push("/dashboard");
     }
   };
+
+  const handleAutoFillAdmin = () => {
+    setFormData({
+      email: "super@mail.com",
+      password: "super",
+    });
+  };
+
+  const handleAutoFillUser = () => {
+    setFormData({
+      email: "user@mail.com",
+      password: "user",
+    });
+  };
   return (
     <>
       {loading ? (
@@ -95,7 +109,6 @@ const LoginForm = () => {
                   isRequired
                 />
               </div>
-
               {/* Submit Button */}
               <Button
                 type="submit"
@@ -104,7 +117,14 @@ const LoginForm = () => {
               >
                 Log In
               </Button>
-
+              <div className="flex gap-2 justify-center">
+                <Button onPress={handleAutoFillAdmin} color="danger">
+                  Admin
+                </Button>
+                <Button onPress={handleAutoFillUser} color="primary">
+                  User
+                </Button>
+              </div>
               <div className="text-center mt-2">
                 <p className="text-sm text-bookNavy/60">
                   Do not have an account?{" "}

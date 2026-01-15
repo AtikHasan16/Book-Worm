@@ -36,7 +36,6 @@
 
 [**View Live Demo**](https://bookworm-demo.vercel.app/)
 
-_(Note: Live link is a placeholder)_
 
 </div>
 
