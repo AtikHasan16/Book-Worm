@@ -3,9 +3,12 @@ import TutorialManager from "@/components/dashboard/tutorials/TutorialManager";
 
 const getTutorials = async () => {
   try {
-    const res = await fetch("http://localhost:2000/api/tutorials", {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://bw-server-seven.vercel.app/api/tutorials",
+      {
+        cache: "no-store",
+      }
+    );
     if (!res.ok) {
       throw new Error("Failed to fetch tutorials");
     }

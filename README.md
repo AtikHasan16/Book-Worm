@@ -129,7 +129,7 @@ npm install
 Create a `.env.local` file in the `client` directory:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:2000/api
+NEXT_PUBLIC_API_URL=https://bw-server-seven.vercel.app/api
 NEXTAUTH_SECRET=your_nextauth_secret_key
 NEXTAUTH_URL=http://localhost:3000
 NEXT_PUBLIC_IMGBB_API_KEY=your_imgbb_api_key

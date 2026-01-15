@@ -4,9 +4,12 @@ import { notFound } from "next/navigation";
 
 const getBook = async (id) => {
   try {
-    const res = await fetch(`http://localhost:2000/api/books/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://bw-server-seven.vercel.app/api/books/${id}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!res.ok) return null;
     return res.json();
   } catch (error) {
@@ -17,9 +20,12 @@ const getBook = async (id) => {
 
 const getReviews = async (id) => {
   try {
-    const res = await fetch(`http://localhost:2000/api/reviews/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://bw-server-seven.vercel.app/api/reviews/${id}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!res.ok) return [];
     return res.json();
   } catch (error) {

@@ -3,7 +3,7 @@ import GenreManager from "@/components/dashboard/genres/GenreManager";
 
 const getGenres = async () => {
   try {
-    const res = await fetch("http://localhost:2000/api/genres", {
+    const res = await fetch("https://bw-server-seven.vercel.app/api/genres", {
       cache: "no-store",
     });
     if (!res.ok) {

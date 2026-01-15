@@ -3,7 +3,7 @@ import BookCatalog from "@/components/user/books/BookCatalog";
 
 const getBooks = async () => {
   try {
-    const res = await fetch("http://localhost:2000/api/books", {
+    const res = await fetch("https://bw-server-seven.vercel.app/api/books", {
       cache: "no-store",
     });
     if (!res.ok) {
@@ -18,7 +18,7 @@ const getBooks = async () => {
 
 const getGenres = async () => {
   try {
-    const res = await fetch("http://localhost:2000/api/genres", {
+    const res = await fetch("https://bw-server-seven.vercel.app/api/genres", {
       cache: "no-store",
     });
     if (!res.ok) {
