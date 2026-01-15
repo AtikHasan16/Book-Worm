@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:2000/api",
+  baseURL: "https://bw-server-seven.vercel.app/api",
 });
 
 const useAxios = () => {

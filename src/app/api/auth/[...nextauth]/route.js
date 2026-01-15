@@ -13,7 +13,7 @@ const handler = NextAuth({
       async authorize(credentials) {
         try {
           const res = await axios.post(
-            "http://localhost:2000/api/users/login",
+            "https://bw-server-seven.vercel.app/api/users/login",
             {
               email: credentials.email,
               password: credentials.password,

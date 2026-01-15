@@ -3,9 +3,12 @@ import ReviewManager from "@/components/dashboard/reviews/ReviewManager";
 
 const getPendingReviews = async () => {
   try {
-    const res = await fetch("http://localhost:2000/api/reviews/pending", {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://bw-server-seven.vercel.app/api/reviews/pending",
+      {
+        cache: "no-store",
+      }
+    );
     if (!res.ok) {
       throw new Error("Failed to fetch pending reviews");
     }
