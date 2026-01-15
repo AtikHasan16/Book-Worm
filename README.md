@@ -1,6 +1,6 @@
 <div align="center">
 
-![BookWorm Banner](https://i.ibb.co/3Wk090k/bookworm-banner-placeholder.png)
+![BookWorm Banner](![website banner](image.png))
 
   <!-- Replace the URL above with your actual banner image URL -->
 
